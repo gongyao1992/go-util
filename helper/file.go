@@ -3,6 +3,7 @@ package helper
 import (
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 // PathHasFile 路径下是否有文件
@@ -44,4 +45,10 @@ func PathExists(path string) (bool, error) {
 		return false, nil
 	}
 	return false, err
+}
+
+// GetFileNameByPath 通过路径获取文件名
+func GetFileNameByPath(path string) string {
+	arr := strings.Split(path, "/")
+	return arr[len(arr) - 1]
 }
