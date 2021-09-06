@@ -20,20 +20,25 @@ func PathHasFile(path, file string) bool {
 
 // GetConfigFile 获取配置文件的全称
 func GetConfigFile(configFile string) string {
+	return GetFileDirPrefix(configFile) + configFile
+}
+
+// GetFileDirPrefix 获取配置文件的路径前缀
+func GetFileDirPrefix(fName string) string {
 	// 获取工作空间
 	wd, _ := os.Getwd()
 	t := 1
 	// 找到配置文件的路径
-	for !PathHasFile(wd, configFile) {
+	for !PathHasFile(wd, fName) {
 		// 如果一直没有 那么最多校验6层
 		if t >= 6 {
-			panic("配置文件不存在")
+			panic("文件不存在")
 		}
 
 		wd += "/.." // 一直向上遍历
 		t += 1
 	}
-	return wd + "/" + configFile
+	return wd + "/"
 }
 
 func PathExists(path string) (bool, error) {
