@@ -20,7 +20,7 @@ func PathHasFile(path, file string) bool {
 
 // GetConfigFile 获取配置文件的全称
 func GetConfigFile(configFile string) string {
-	return GetFileDirPrefix(configFile) + configFile
+	return GetFileDirPrefix(configFile) + "/" + configFile
 }
 
 // GetFileDirPrefix 获取配置文件的路径前缀
@@ -38,7 +38,7 @@ func GetFileDirPrefix(fName string) string {
 		wd += "/.." // 一直向上遍历
 		t += 1
 	}
-	return wd + "/"
+	return wd
 }
 
 func PathExists(path string) (bool, error) {
