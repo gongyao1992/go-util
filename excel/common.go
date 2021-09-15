@@ -70,26 +70,32 @@ func (e *CommonExcel)SetFileName(fileName string)  {
 	e.fileName = fileName + ex
 }
 
-func (e *CommonExcel)WriteData(hangIndex int, values []interface{})  {
+func (e *CommonExcel)WriteData(hangIndex int, values []interface{}) error {
 	if len(values) == 0 {
-		return
+		return nil
 	}
 	lie := 1
 	for _, values := range values {
-		e.file.SetCellValue("Sheet1", getZuobiao(hangIndex, lie), values)
+		err := e.file.SetCellValue("Sheet1", getZuobiao(hangIndex, lie), values)
+		if err != nil {
+			return err
+		}
 		lie += 1
 	}
+
+	return nil
 }
 
-func (e *CommonExcel)Save() {
-	e.file.SaveAs(e.GetFile())
+func (e *CommonExcel)Save() error {
+	return e.file.SaveAs(e.GetFile())
 }
 
 func (e *CommonExcel)GetFilePath() string {
 	panic("del")
 }
 func (e *CommonExcel)GetFile() string {
-	d := "." + e.dir
+	//d := "." + e.dir
+	d := e.dir
 	d += e.fileName
 	return d
 }
