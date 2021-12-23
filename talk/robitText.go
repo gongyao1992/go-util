@@ -1,4 +1,4 @@
-package dingtalk
+package talk
 
 import (
 	"errors"
@@ -7,25 +7,25 @@ import (
 	"strings"
 )
 
-type RobitText struct {
+type DingRobitText struct {
 	client *dingtalk.Client
 	at []string
 	isAtAll bool
 }
 
-func NewRobitText(accessToken, secret, atMobiles string, isAtAll bool) *RobitText {
+func NewDingRobitText(accessToken, secret, atMobiles string, isAtAll bool) *DingRobitText {
 	at := make([]string, 0)
 	if len(atMobiles) > 0 {
 		at = strings.Split(atMobiles, ",")
 	}
-	return &RobitText{
+	return &DingRobitText{
 		client:  dingtalk.NewClient(accessToken, secret),
 		at:      at,
 		isAtAll: isAtAll,
 	}
 }
 
-func (r *RobitText)Send(i interface{}) error {
+func (r *DingRobitText)Send(i interface{}) error {
 
 	var text string
 	switch i.(type) {
