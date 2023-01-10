@@ -100,6 +100,11 @@ func (e *CommonExcel)GetFile() string {
 	return d
 }
 
+// GetFileName 获取文件名称
+func (e *CommonExcel)GetFileName() string {
+	return e.fileName
+}
+
 // 获取坐标
 func getZuobiao(hangInt, lieInt int) string {
 	lieStr := getExcelLie(lieInt)
