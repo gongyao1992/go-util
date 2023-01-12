@@ -57,7 +57,8 @@ func NewCommonExcel(dir, fileName string) *CommonExcel {
 
 	exists, _ := helper.PathExists(e.GetFile())
 	if !exists {
-		os.Mkdir(e.GetFile(), 0777)
+		//os.Mkdir(e.GetFile(), 0777)
+		os.MkdirAll(e.GetFile(), 0777)
 	}
 
 	if len(fileName) > 0 {
